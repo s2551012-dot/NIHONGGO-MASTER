@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kosakata — Nihongo Master</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Sans:wght@400;500;600&family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="kosakata.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">←</a>
+      <h1>KOSAKATA</h1>
+      <span class="header-count" id="headerCount">100</span>
+    </header>
+
+    <div class="search-wrap">
+      <input
+        class="search-box"
+        type="search"
+        id="searchInput"
+        placeholder="Cari kosakata... (e.g. sushi, 食べ物)"
+      />
+    </div>
+
+    <div class="tabs-wrap" id="tabsWrap"></div>
+
+    <div class="stats-bar">
+      <div class="stat-pill">Tampil: <span id="showCount">100</span></div>
+      <div class="stat-pill">Favorit: <span id="favCount">0</span></div>
+    </div>
+
+    <div class="vocab-list" id="vocabList"></div>
+
+    <div class="empty" id="emptyState" style="display: none">
+      <span class="emoji">🔍</span>
+      Tidak ada kosakata yang cocok.
+    </div>
+
+    <footer>Nihongo Master — 単語 © 2025</footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="kosakata.js"></script>
+  </body>
+</html>

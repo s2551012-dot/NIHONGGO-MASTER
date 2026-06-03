@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setting</title>
+    <link rel="stylesheet" href="setting.css" />
+  </head>
+  <body>
+    <section class="settings-page">
+      <h2>⚙️ Settings</h2>
+
+      <!-- PROFILE -->
+      <div class="setting-card">
+        <h3 id="profile-title">👤 Profile</h3>
+        <div class="profile-box">
+          <img
+            src="https://i.imgur.com/6VBx3io.png"
+            class="profile-img"
+            alt="avatar"
+          />
+          <div>
+            <h4 id="profile-name">Nama User</h4>
+            <p id="profile-sub">JLPT N5 Learner</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LANGUAGE -->
+      <div class="setting-card">
+        <h3 id="card-lang-title">🌐 Bahasa</h3>
+        <div class="lang-row">
+          <label for="languageSelect" id="lang-label">Pilih bahasa</label>
+          <select id="languageSelect">
+            <option value="id">Indonesia</option>
+            <option value="en">English</option>
+            <option value="ko">한국어</option>
+            <option value="zh">中文</option>
+            <option value="ne">नेपाली</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+      </div>
+
+     
+
+    <!-- TIDAK ada script i18next CDN -->
+    <script src="translations.js"></script>
+    <script src="setting.js"></script>
+  </body>
+</html>

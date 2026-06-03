@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz — Nihongo Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Dela+Gothic+One&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="quiz.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="app-header">
+      <a href="index.html" class="back-btn">← Kembali</a>
+      <h1 class="app-title">KUIS</h1>
+      <div class="header-score" id="headerScore">0 pt</div>
+    </header>
+
+    <!-- SCREEN 1: KATEGORI -->
+    <main id="screenCategory" class="screen active">
+      <div class="screen-inner">
+        <p class="screen-label">Pilih kategori</p>
+        <h2 class="screen-heading">Mau latihan apa?</h2>
+
+        <div class="category-grid">
+          <button class="cat-btn" data-cat="vocab">
+            <span class="cat-icon">📖</span>
+            <span class="cat-name">Kosakata</span>
+            <span class="cat-sub">Kotoba</span>
+          </button>
+          <button class="cat-btn" data-cat="kanji">
+            <span class="cat-icon">漢</span>
+            <span class="cat-name">Kanji</span>
+            <span class="cat-sub">Huruf kanji</span>
+          </button>
+          <button class="cat-btn" data-cat="grammar">
+            <span class="cat-icon">📝</span>
+            <span class="cat-name">Grammar</span>
+            <span class="cat-sub">Tata bahasa</span>
+          </button>
+          <button class="cat-btn" data-cat="listening">
+            <span class="cat-icon">🎧</span>
+            <span class="cat-name">Listening</span>
+            <span class="cat-sub">Mendengarkan</span>
+          </button>
+        </div>
+
+        <p class="screen-label" style="margin-top: 2rem">Pilih level</p>
+        <div class="level-row">
+          <button class="lvl-btn active" data-lvl="N5">N5</button>
+          <button class="lvl-btn" data-lvl="N4">N4</button>
+          <button class="lvl-btn" data-lvl="N3">N3</button>
+          <button class="lvl-btn" data-lvl="N2">N2</button>
+          <button class="lvl-btn" data-lvl="N1">N1</button>
+        </div>
+
+        <button class="start-btn" id="startBtn" disabled>Mulai Quiz →</button>
+      </div>
+    </main>
+
+    <!-- SCREEN 2: SOAL -->
+    <main id="screenQuiz" class="screen">
+      <div class="screen-inner">
+        <div class="quiz-meta">
+          <span class="quiz-cat-badge" id="quizCatBadge">Kosakata</span>
+          <span class="quiz-lvl-badge" id="quizLvlBadge">N5</span>
+          <span class="quiz-counter" id="quizCounter">1 / 20</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="timer-row">
+          <div class="timer-bar-wrap">
+            <div class="timer-bar" id="timerBar"></div>
+          </div>
+          <span class="timer-num" id="timerNum">30</span>
+        </div>
+
+        <div class="question-card" id="questionCard">
+          <div class="question-jp" id="questionJp">犬</div>
+          <div class="question-reading" id="questionReading">いぬ</div>
+          <div class="question-text" id="questionText">
+            Apa arti kata di atas?
+          </div>
+        </div>
+
+        <div class="choices-grid" id="choicesGrid"></div>
+
+        <div class="feedback-box" id="feedbackBox">
+          <div class="fb-top">
+            <div class="feedback-icon" id="feedbackIcon">✓</div>
+            <div class="feedback-msg" id="feedbackMsg">Benar!</div>
+          </div>
+          <div class="feedback-detail" id="feedbackDetail"></div>
+          <button class="next-btn" id="nextBtn">Soal Berikutnya →</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- SCREEN 3: HASIL -->
+    <main id="screenResult" class="screen">
+      <div class="screen-inner">
+        <div class="result-badge" id="resultBadge">🏆</div>
+        <h2 class="result-title" id="resultTitle">Quiz Selesai!</h2>
+        <p class="result-sub" id="resultSub">Kategori: Kosakata · N5</p>
+
+        <div class="result-stats">
+          <div class="stat-box">
+            <div class="stat-num" id="statScore">0</div>
+            <div class="stat-label">Skor</div>
+          </div>
+          <div class="stat-box correct">
+            <div class="stat-num" id="statCorrect">0</div>
+            <div class="stat-label">Benar</div>
+          </div>
+          <div class="stat-box wrong">
+            <div class="stat-num" id="statWrong">0</div>
+            <div class="stat-label">Salah</div>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3 class="review-heading">📋 Pembahasan Jawaban</h3>
+          <div id="reviewList"></div>
+        </div>
+        <div class="review-section">
+          <h3 class="review-heading">🕓 Riwayat Quiz</h3>
+          <div id="historyList"></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="action-btn primary" id="retryBtn">Ulangi Quiz</button>
+          <button class="action-btn secondary" id="backCatBtn">
+            Pilih Kategori
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="quiz.js"></script>
+  </body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listening — Nihongo Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Dela+Gothic+One&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="listening.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="app-header">
+      <a href="index.html" class="back-btn">← Kembali</a>
+      <h1 class="app-title">LISTENING</h1>
+      <div class="header-icon">🎧</div>
+    </header>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: MENU UTAMA
+    ═══════════════════════════════════════ -->
+    <main id="screenMenu" class="screen active">
+      <div class="screen-inner">
+        <p class="screen-label">Pilih mode latihan</p>
+        <h2 class="screen-heading">Mau latihan apa?</h2>
+
+        <div class="menu-grid">
+          <button class="menu-card" data-screen="screenKosakata">
+            <span class="menu-icon">📖</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening Kosakata</span>
+              <span class="menu-sub">Salam, angka, warna, makanan</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+
+          <button class="menu-card" data-screen="screenPercakapan">
+            <span class="menu-icon">🗣️</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening Percakapan</span>
+              <span class="menu-sub">Situasi sehari-hari</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+
+          <div class="menu-section-label">Latihan JLPT</div>
+
+          <button class="menu-card jlpt" data-screen="screenJLPT" data-lvl="N5">
+            <span class="menu-icon lvl-badge n5">N5</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening N5</span>
+              <span class="menu-sub"
+                >Percakapan sederhana & instruksi dasar</span
+              >
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-card jlpt" data-screen="screenJLPT" data-lvl="N4">
+            <span class="menu-icon lvl-badge n4">N4</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening N4</span>
+              <span class="menu-sub">Percakapan sehari-hari lebih panjang</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-card jlpt" data-screen="screenJLPT" data-lvl="N3">
+            <span class="menu-icon lvl-badge n3">N3</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening N3</span>
+              <span class="menu-sub">Percakapan & pengumuman umum</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-card jlpt" data-screen="screenJLPT" data-lvl="N2">
+            <span class="menu-icon lvl-badge n2">N2</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening N2</span>
+              <span class="menu-sub">Berita & diskusi tingkat menengah</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+          <button class="menu-card jlpt" data-screen="screenJLPT" data-lvl="N1">
+            <span class="menu-icon lvl-badge n1">N1</span>
+            <div class="menu-info">
+              <span class="menu-name">Listening N1</span>
+              <span class="menu-sub">Diskusi & informasi tingkat lanjut</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+
+          <div class="menu-section-label">Uji Kemampuan</div>
+
+          <button class="menu-card highlight" data-screen="screenQuizSetup">
+            <span class="menu-icon">📝</span>
+            <div class="menu-info">
+              <span class="menu-name">Quiz Listening</span>
+              <span class="menu-sub">Dengarkan lalu jawab pertanyaan</span>
+            </div>
+            <span class="menu-arrow">›</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: KOSAKATA
+    ═══════════════════════════════════════ -->
+    <main id="screenKosakata" class="screen">
+      <div class="screen-inner">
+        <div class="sub-header">
+          <button class="sub-back-btn" data-back="screenMenu">← Kembali</button>
+          <span class="sub-title">📖 Kosakata</span>
+        </div>
+
+        <div class="category-tabs" id="koskataTabs">
+          <button class="tab-btn active" data-cat="salam">Salam</button>
+          <button class="tab-btn" data-cat="angka">Angka</button>
+          <button class="tab-btn" data-cat="warna">Warna</button>
+          <button class="tab-btn" data-cat="makanan">Makanan</button>
+        </div>
+
+        <div id="kosakataCatLabel" class="cat-description"></div>
+
+        <div class="vocab-list" id="vocabList"></div>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: PERCAKAPAN
+    ═══════════════════════════════════════ -->
+    <main id="screenPercakapan" class="screen">
+      <div class="screen-inner">
+        <div class="sub-header">
+          <button class="sub-back-btn" data-back="screenMenu">← Kembali</button>
+          <span class="sub-title">🗣️ Percakapan</span>
+        </div>
+
+        <div class="category-tabs" id="percakapanTabs">
+          <button class="tab-btn active" data-topic="perkenalan">
+            Perkenalan
+          </button>
+          <button class="tab-btn" data-topic="belanja">Belanja</button>
+          <button class="tab-btn" data-topic="sekolah">Sekolah</button>
+          <button class="tab-btn" data-topic="kerja">Kerja</button>
+          <button class="tab-btn" data-topic="transport">Transport</button>
+        </div>
+
+        <div class="conv-player" id="convPlayer">
+          <!-- Dynamically filled -->
+        </div>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: JLPT LISTENING
+    ═══════════════════════════════════════ -->
+    <main id="screenJLPT" class="screen">
+      <div class="screen-inner">
+        <div class="sub-header">
+          <button class="sub-back-btn" data-back="screenMenu">← Kembali</button>
+          <span class="sub-title" id="jlptTitle">🎯 Listening N5</span>
+        </div>
+
+        <div id="jlptLevelBadge" class="jlpt-hero-badge">N5</div>
+        <p id="jlptDesc" class="jlpt-desc">
+          Percakapan sederhana dan instruksi dasar.
+        </p>
+
+        <div class="jlpt-list" id="jlptList"></div>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: QUIZ SETUP
+    ═══════════════════════════════════════ -->
+    <main id="screenQuizSetup" class="screen">
+      <div class="screen-inner">
+        <div class="sub-header">
+          <button class="sub-back-btn" data-back="screenMenu">← Kembali</button>
+          <span class="sub-title">📝 Quiz Listening</span>
+        </div>
+
+        <p class="screen-label">Pilih level</p>
+        <div class="level-row" id="quizLevelRow">
+          <button class="lvl-btn active" data-lvl="N5">N5</button>
+          <button class="lvl-btn" data-lvl="N4">N4</button>
+          <button class="lvl-btn" data-lvl="N3">N3</button>
+          <button class="lvl-btn" data-lvl="N2">N2</button>
+          <button class="lvl-btn" data-lvl="N1">N1</button>
+        </div>
+
+        <div class="quiz-info-box">
+          <div class="qi-row">
+            <span>Jumlah soal</span><strong>10 soal</strong>
+          </div>
+          <div class="qi-row">
+            <span>Waktu per soal</span><strong>30 detik</strong>
+          </div>
+          <div class="qi-row">
+            <span>Audio</span><strong>TTS Bahasa Jepang</strong>
+          </div>
+          <div class="qi-row">
+            <span>Format</span><strong>Pilihan ganda</strong>
+          </div>
+        </div>
+
+        <button class="start-btn" id="startQuizBtn">Mulai Quiz →</button>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: QUIZ SOAL
+    ═══════════════════════════════════════ -->
+    <main id="screenQuizSoal" class="screen">
+      <div class="screen-inner">
+        <div class="quiz-meta">
+          <span class="quiz-lvl-badge" id="quizLvlBadge">N5</span>
+          <span class="quiz-cat-badge">Listening</span>
+          <span class="quiz-counter" id="quizCounter">1 / 10</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="timer-row">
+          <div class="timer-bar-wrap">
+            <div class="timer-bar" id="timerBar"></div>
+          </div>
+          <span class="timer-num" id="timerNum">30</span>
+        </div>
+
+        <!-- Audio Player -->
+        <div class="audio-card" id="audioCard">
+          <div class="audio-wave" id="audioWave">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+          <div class="audio-jp" id="audioJp">ー</div>
+          <div class="audio-controls">
+            <button class="play-btn" id="playBtn" title="Putar audio">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <button class="replay-btn" id="replayBtn" title="Putar ulang">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"
+                />
+              </svg>
+            </button>
+          </div>
+          <p class="audio-hint" id="audioHint">Tekan ▶ untuk mendengarkan</p>
+        </div>
+
+        <p class="question-text" id="questionText">Apa yang diucapkan?</p>
+        <div class="choices-grid" id="choicesGrid"></div>
+
+        <div class="feedback-box" id="feedbackBox">
+          <div class="fb-top">
+            <div class="feedback-icon" id="feedbackIcon">✓</div>
+            <div class="feedback-msg" id="feedbackMsg">Benar!</div>
+          </div>
+          <div class="feedback-detail" id="feedbackDetail"></div>
+          <button class="next-btn" id="nextBtn">Soal Berikutnya →</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         SCREEN: HASIL QUIZ
+    ═══════════════════════════════════════ -->
+    <main id="screenResult" class="screen">
+      <div class="screen-inner">
+        <div class="result-badge" id="resultBadge">🏆</div>
+        <h2 class="result-title" id="resultTitle">Quiz Selesai!</h2>
+        <p class="result-sub" id="resultSub">Listening · N5</p>
+
+        <div class="result-stats">
+          <div class="stat-box">
+            <div class="stat-num" id="statScore">0</div>
+            <div class="stat-label">Skor</div>
+          </div>
+          <div class="stat-box correct">
+            <div class="stat-num" id="statCorrect">0</div>
+            <div class="stat-label">Benar</div>
+          </div>
+          <div class="stat-box wrong">
+            <div class="stat-num" id="statWrong">0</div>
+            <div class="stat-label">Salah</div>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <h3 class="review-heading">📋 Pembahasan Jawaban</h3>
+          <div id="reviewList"></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="action-btn primary" id="retryBtn">Ulangi Quiz</button>
+          <button class="action-btn secondary" id="backMenuBtn">
+            Menu Listening
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="listening.js"></script>
+  </body>
+</html>
