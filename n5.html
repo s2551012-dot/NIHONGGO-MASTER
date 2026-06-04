@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JLPT N5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="n5.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <a href="home.html" class="back-btn">← Kembali</a>
+      <h1>🈴 JLPT N5</h1>
+      <div style="width: 72px"></div>
+    </header>
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="vocab">📖 Kosakata</button>
+      <button class="tab-btn" data-tab="kanji">漢 Kanji</button>
+      <button class="tab-btn" data-tab="hiragana">あ Hiragana</button>
+      <button class="tab-btn" data-tab="katakana">ア Katakana</button>
+      <button class="tab-btn" data-tab="particle">🔤 Partikel</button>
+      <button class="tab-btn" data-tab="bunpou">📝 Bunpou</button>
+      <button class="tab-btn" data-tab="quiz">🎴 Quiz</button>
+      <button class="tab-btn" data-tab="progress">📊 Progress</button>
+    </nav>
+
+    <main class="main-content">
+      <!-- ── KOSAKATA ── -->
+      <section id="tab-vocab" class="tab-section active">
+        <div class="section-header">
+          <h2>📖 Kosakata N5</h2>
+          <span class="item-count" id="vocab-count"></span>
+        </div>
+        <div class="search-box">
+          <input type="text" id="vocab-search" placeholder="Cari kosakata..." />
+        </div>
+        <div class="card-list" id="vocab-list"></div>
+      </section>
+
+      <!-- ── KANJI ── -->
+      <section id="tab-kanji" class="tab-section">
+        <div class="section-header">
+          <h2>漢 Kanji N5</h2>
+          <span class="item-count" id="kanji-count"></span>
+        </div>
+        <div class="search-box">
+          <input type="text" id="kanji-search" placeholder="Cari kanji..." />
+        </div>
+        <div class="card-list" id="kanji-list"></div>
+      </section>
+
+      <!-- ── HIRAGANA ── -->
+      <section id="tab-hiragana" class="tab-section">
+        <div class="section-header">
+          <h2>あ Hiragana</h2>
+          <span class="item-count" id="hiragana-count"></span>
+        </div>
+        <div class="kana-group-label">Dasar (清音)</div>
+        <div class="kana-grid" id="hiragana-grid"></div>
+        <div class="kana-group-label" style="margin-top: 1.25rem">
+          Dakuten &amp; Handakuten (濁音・半濁音)
+        </div>
+        <div class="kana-grid" id="hiragana-grid-daku"></div>
+        <div class="kana-group-label" style="margin-top: 1.25rem">
+          Kombinasi (拗音)
+        </div>
+        <div class="kana-grid kana-grid-combo" id="hiragana-grid-combo"></div>
+      </section>
+
+      <!-- ── KATAKANA ── -->
+      <section id="tab-katakana" class="tab-section">
+        <div class="section-header">
+          <h2>ア Katakana</h2>
+          <span class="item-count" id="katakana-count"></span>
+        </div>
+        <div class="kana-group-label">Dasar (清音)</div>
+        <div class="kana-grid" id="katakana-grid"></div>
+        <div class="kana-group-label" style="margin-top: 1.25rem">
+          Dakuten &amp; Handakuten (濁音・半濁音)
+        </div>
+        <div class="kana-grid" id="katakana-grid-daku"></div>
+        <div class="kana-group-label" style="margin-top: 1.25rem">
+          Kombinasi (拗音)
+        </div>
+        <div class="kana-grid kana-grid-combo" id="katakana-grid-combo"></div>
+      </section>
+
+      <!-- ── PARTIKEL ── -->
+      <section id="tab-particle" class="tab-section">
+        <div class="section-header">
+          <h2>🔤 Partikel N5</h2>
+          <span class="item-count" id="particle-count"></span>
+        </div>
+        <div class="card-list" id="particle-list"></div>
+      </section>
+
+      <!-- ── BUNPOU ── -->
+      <section id="tab-bunpou" class="tab-section">
+        <div class="section-header">
+          <h2>📝 Bunpou N5</h2>
+          <span class="item-count" id="bunpou-count"></span>
+        </div>
+        <div class="card-list" id="bunpou-list"></div>
+      </section>
+
+      <!-- ── QUIZ ── -->
+      <section id="tab-quiz" class="tab-section">
+        <div class="section-header">
+          <h2>🎴 Quiz N5</h2>
+        </div>
+        <div id="quiz-container">
+          <div class="quiz-meta">
+            <span id="quiz-progress-label"
+              >Soal <span id="q-current">1</span> /
+              <span id="q-total">10</span></span
+            >
+            <span id="quiz-score-label">Skor: <span id="q-score">0</span></span>
+          </div>
+          <div class="quiz-progress-bar"><div id="quiz-bar"></div></div>
+          <div class="quiz-card" id="quiz-card">
+            <p class="quiz-question" id="quiz-question"></p>
+            <div class="quiz-options" id="quiz-options"></div>
+          </div>
+          <div id="quiz-result" class="quiz-result hidden">
+            <div class="result-emoji" id="result-emoji"></div>
+            <h3 id="result-title"></h3>
+            <p id="result-sub"></p>
+            <button class="btn-restart" onclick="restartQuiz()">
+              🔄 Ulangi Quiz
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PROGRESS ── -->
+      <section id="tab-progress" class="tab-section">
+        <div class="section-header">
+          <h2>📊 Progress Belajar</h2>
+        </div>
+        <div class="progress-grid">
+          <div class="progress-card">
+            <span class="prog-num" id="prog-vocab">0</span>
+            <span class="prog-label">Kosakata Dipelajari</span>
+            <div class="prog-bar-wrap">
+              <div class="prog-bar" id="bar-vocab"></div>
+            </div>
+          </div>
+          <div class="progress-card">
+            <span class="prog-num" id="prog-kanji">0</span>
+            <span class="prog-label">Kanji Dipelajari</span>
+            <div class="prog-bar-wrap">
+              <div class="prog-bar" id="bar-kanji"></div>
+            </div>
+          </div>
+          <div class="progress-card">
+            <span class="prog-num" id="prog-quiz">0</span>
+            <span class="prog-label">Quiz Selesai</span>
+          </div>
+          <div class="progress-card">
+            <span class="prog-num" id="prog-score">—</span>
+            <span class="prog-label">Nilai Terakhir</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="n5.js"></script>
+  </body>
+</html>

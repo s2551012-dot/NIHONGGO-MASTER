@@ -1,0 +1,789 @@
+/* ══ RESET & VARS ══ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0d0d14;
+  --surface: #161622;
+  --card: #1e1e2e;
+  --border: #2a2a3e;
+  --accent: #f72585;
+  --accent2: #7209b7;
+  --accent3: #4cc9f0;
+  --green: #06d6a0;
+  --yellow: #ffd166;
+  --text: #f0eeff;
+  --muted: #8888aa;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 20% 0%,
+      rgba(114, 9, 183, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 100%,
+      rgba(247, 37, 133, 0.12) 0%,
+      transparent 60%
+    );
+  background-attachment: fixed;
+}
+
+/* ══ HEADER ══ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.25rem;
+  background: rgba(13, 13, 20, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-btn {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.back-btn:hover {
+  color: var(--accent3);
+  border-color: var(--accent3);
+}
+
+/* ══ TAB NAV ══ */
+.tab-nav {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--muted);
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
+  white-space: nowrap;
+}
+.tab-btn.active,
+.tab-btn:hover {
+  border-color: var(--accent3);
+  color: var(--accent3);
+  background: rgba(76, 201, 240, 0.08);
+}
+
+/* ══ MAIN ══ */
+.main-content {
+  padding: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tab-section {
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+.tab-section.active {
+  display: block;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ══ SECTION HEADER ══ */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.section-header h2 {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+.item-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.2rem 0.7rem;
+}
+
+/* ══ SEARCH ══ */
+.search-box {
+  margin-bottom: 1rem;
+}
+.search-box input {
+  width: 100%;
+  padding: 0.55rem 0.9rem;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-box input:focus {
+  border-color: var(--accent3);
+}
+.search-box input::placeholder {
+  color: var(--muted);
+}
+
+/* ══ CARD LIST ══ */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ══ VOCAB CARD ══ */
+.vocab-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    transform 0.18s;
+}
+.vocab-card:hover {
+  border-color: var(--accent3);
+  transform: translateY(-1px);
+}
+.vocab-card.learned {
+  border-color: var(--green);
+}
+
+.vocab-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.vocab-jp {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+.vocab-hira {
+  font-size: 0.85rem;
+  color: var(--accent3);
+}
+.vocab-badge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(6, 214, 160, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+  display: none;
+}
+.vocab-card.learned .vocab-badge {
+  display: inline;
+}
+
+.vocab-meaning {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+.vocab-detail {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.vocab-card.open .vocab-detail {
+  display: block;
+}
+.vocab-example {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+.vocab-trans {
+  font-size: 0.83rem;
+  color: var(--accent3);
+}
+.vocab-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.btn-learn {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-learn:hover,
+.vocab-card.learned .btn-learn {
+  background: rgba(6, 214, 160, 0.12);
+}
+
+/* ══ KANJI CARD ══ */
+.kanji-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    transform 0.18s;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+.kanji-card:hover {
+  border-color: var(--accent3);
+  transform: translateY(-1px);
+}
+.kanji-card.learned {
+  border-color: var(--green);
+}
+
+.kanji-char {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 2.8rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: 12px;
+  height: 72px;
+  border: 1px solid var(--border);
+}
+.kanji-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.kanji-reading {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.reading-pill {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+}
+.on-pill {
+  background: rgba(247, 37, 133, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(247, 37, 133, 0.25);
+}
+.kun-pill {
+  background: rgba(76, 201, 240, 0.12);
+  color: var(--accent3);
+  border: 1px solid rgba(76, 201, 240, 0.25);
+}
+.kanji-meaning {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.kanji-detail {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+.kanji-card.open .kanji-detail {
+  display: block;
+}
+.kanji-example-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.kanji-ex-jp {
+  font-size: 0.9rem;
+  color: var(--yellow);
+}
+.kanji-ex-id {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.kanji-learn-btn {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.kanji-learn-btn:hover {
+  background: rgba(6, 214, 160, 0.12);
+}
+.kanji-badge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(6, 214, 160, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+  display: none;
+  width: fit-content;
+  margin-top: 0.2rem;
+}
+.kanji-card.learned .kanji-badge {
+  display: inline;
+}
+
+/* ══ KANA GRID ══ */
+.kana-group-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.kana-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.kana-grid-combo {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.kana-cell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.6rem 0.3rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.15s;
+  user-select: none;
+  position: relative;
+}
+.kana-cell:hover {
+  border-color: var(--accent3);
+  background: rgba(76, 201, 240, 0.07);
+  transform: translateY(-2px);
+}
+.kana-cell.kana-active {
+  border-color: var(--accent3);
+  background: rgba(76, 201, 240, 0.13);
+}
+.kana-cell.kana-learned {
+  border-color: var(--green);
+  background: rgba(6, 214, 160, 0.07);
+}
+
+.kana-char {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  display: block;
+  line-height: 1.1;
+}
+.kana-roma {
+  font-size: 0.7rem;
+  color: var(--accent3);
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.kana-cell.kana-empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Kana detail popup */
+.kana-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  animation: fadeUp 0.2s ease;
+}
+.kana-popup-inner {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 1.5rem 1.5rem;
+  max-width: 280px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.kana-popup-char {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 4rem;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.kana-popup-roma {
+  font-size: 1.3rem;
+  color: var(--accent3);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.kana-popup-examples {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+.kana-popup-examples strong {
+  color: var(--yellow);
+}
+.kana-popup-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.kana-popup-close {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.kana-popup-close:hover {
+  border-color: var(--accent3);
+  color: var(--accent3);
+}
+.kana-popup-learn {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.kana-popup-learn:hover {
+  background: rgba(6, 214, 160, 0.12);
+}
+.kana-popup-learn.learned {
+  background: rgba(6, 214, 160, 0.18);
+}
+
+/* ══ PARTICLE CARD ══ */
+.particle-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+.particle-char {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 2rem;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 209, 102, 0.08);
+  border-radius: 10px;
+  height: 52px;
+  border: 1px solid rgba(255, 209, 102, 0.2);
+}
+.particle-func {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.particle-ex-jp {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+.particle-ex-id {
+  font-size: 0.82rem;
+  color: var(--accent3);
+}
+
+/* ══ BUNPOU CARD ══ */
+.bunpou-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+.bunpou-pattern {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.bunpou-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.bunpou-ex-jp {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+.bunpou-ex-id {
+  font-size: 0.82rem;
+  color: var(--accent3);
+}
+
+/* ══ QUIZ ══ */
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.quiz-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+}
+#quiz-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent3));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow);
+}
+.quiz-question {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.quiz-opt {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.quiz-opt:hover:not(:disabled) {
+  border-color: var(--accent3);
+  background: rgba(76, 201, 240, 0.06);
+}
+.quiz-opt.correct {
+  border-color: var(--green) !important;
+  background: rgba(6, 214, 160, 0.12) !important;
+  color: var(--green);
+}
+.quiz-opt.wrong {
+  border-color: #ef233c !important;
+  background: rgba(239, 35, 60, 0.1) !important;
+  color: #ef233c;
+}
+.quiz-opt:disabled {
+  cursor: not-allowed;
+}
+
+.quiz-result {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.quiz-result.hidden {
+  display: none;
+}
+.result-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+.quiz-result h3 {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+.quiz-result p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+.btn-restart {
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  border: none;
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.65rem 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ══ PROGRESS ══ */
+.progress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.progress-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.prog-num {
+  font-family: "Dela Gothic One", sans-serif;
+  font-size: 1.8rem;
+  color: var(--accent3);
+}
+.prog-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.prog-bar-wrap {
+  margin-top: 0.5rem;
+  height: 5px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.prog-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent3));
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
